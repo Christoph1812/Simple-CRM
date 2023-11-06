@@ -9,13 +9,19 @@ import { MenuComponent } from './menu/menu.component';
 import { MatIconModule } from '@angular/material/icon';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserComponent } from './user/user.component';
-
+import { MatButtonModule } from '@angular/material/button';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { DialogAddUserComponent } from './dialog-add-user/dialog-add-user.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
     DashboardComponent,
-    UserComponent
+    UserComponent,
+    DialogAddUserComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -23,7 +29,11 @@ import { UserComponent } from './user/user.component';
     BrowserAnimationsModule,
     MatToolbarModule,
     MatSidenavModule,
-    MatIconModule
+    MatIconModule,
+    MatButtonModule,
+    MatTooltipModule,
+    MatDialogModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
