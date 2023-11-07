@@ -15,5 +15,17 @@ export class User {
         this.city = obj ? obj.city : '';
     }
 
+    public toJason() {
+        return {
+            firstName: this.firstName,
+            lastName: this.lastName,
+            birthDate: this.birthDate,
+            address: this.address,
+            zipCode: this.zipCode,
+            city: this.city,
+        }
+
+
+    }
 
 }

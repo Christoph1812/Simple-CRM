@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.component';
-import { User } from 'src/model/user.class';
+import { User } from '../model/user.class';
+
 
 @Component({
   selector: 'app-user',

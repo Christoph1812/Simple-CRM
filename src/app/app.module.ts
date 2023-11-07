@@ -20,7 +20,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
-
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatCardModule } from '@angular/material/card';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +46,9 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
     MatDatepickerModule,
     MatNativeDateModule,
     FormsModule,
-    provideFirebaseApp(() => initializeApp({"projectId":"simple-crm-a3027","appId":"1:303776556573:web:19492c71444bfe650108f4","storageBucket":"simple-crm-a3027.appspot.com","apiKey":"AIzaSyDQhNONRPOVEp-gq9aqEmBwWztuxSIDslE","authDomain":"simple-crm-a3027.firebaseapp.com","messagingSenderId":"303776556573"})),
+    MatProgressBarModule,
+    MatCardModule,
+    provideFirebaseApp(() => initializeApp({ "projectId": "simple-crm-a3027", "appId": "1:303776556573:web:19492c71444bfe650108f4", "storageBucket": "simple-crm-a3027.appspot.com", "apiKey": "AIzaSyDQhNONRPOVEp-gq9aqEmBwWztuxSIDslE", "authDomain": "simple-crm-a3027.firebaseapp.com", "messagingSenderId": "303776556573" })),
     provideFirestore(() => getFirestore())
   ],
   providers: [],
