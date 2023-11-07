@@ -14,6 +14,13 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { DialogAddUserComponent } from './dialog-add-user/dialog-add-user.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { FormsModule } from '@angular/forms';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +40,13 @@ import { MatInputModule } from '@angular/material/input';
     MatButtonModule,
     MatTooltipModule,
     MatDialogModule,
-    MatInputModule
+    MatInputModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    FormsModule,
+    provideFirebaseApp(() => initializeApp({"projectId":"simple-crm-a3027","appId":"1:303776556573:web:19492c71444bfe650108f4","storageBucket":"simple-crm-a3027.appspot.com","apiKey":"AIzaSyDQhNONRPOVEp-gq9aqEmBwWztuxSIDslE","authDomain":"simple-crm-a3027.firebaseapp.com","messagingSenderId":"303776556573"})),
+    provideFirestore(() => getFirestore())
   ],
   providers: [],
   bootstrap: [AppComponent]
