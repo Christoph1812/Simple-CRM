@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { User } from '../model/user.class';
-import { AddUserService } from '../firebase-services/add-user.service';
+import { User } from '../models/user.class';
+import { UserService } from '../firebase-services/user.service';
 import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
@@ -13,7 +13,7 @@ export class DialogAddUserComponent {
   user = new User();
   birthDate?: Date;
 
-  constructor(private dialogRef: MatDialogRef<DialogAddUserComponent>, private userService: AddUserService) { }
+  constructor(private dialogRef: MatDialogRef<DialogAddUserComponent>, private userService: UserService) { }
 
   saveUser() {
     this.loading = true;
@@ -25,11 +25,10 @@ export class DialogAddUserComponent {
       this.loading = false;
       this.dialogRef.close();
     }, 900);
-
-
   }
 
   closeDialog() {
     this.dialogRef.close();
   }
+
 }
