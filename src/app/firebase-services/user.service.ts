@@ -11,12 +11,16 @@ export class UserService implements OnDestroy {
 
   unsubUsers;
 
-
   firestore: Firestore = inject(Firestore);
 
   constructor() {
     this.unsubUsers = this.subUsersList();
   }
+
+  ngOnDestroy() {
+    this.unsubUsers();
+  }
+
 
   async addUser(item: any) {
     await addDoc(this.getUsersRef(), item).catch(
@@ -26,20 +30,15 @@ export class UserService implements OnDestroy {
 
 
   subUsersList() {
-    // Erstellen Sie eine Firestore-Abfrage, um die neuesten 4 Notizen zu erhalten
-    const q = query(this.getUsersRef(), limit(4))
+    const q = query(this.getUsersRef())
     return onSnapshot(q, (list) => {
-      // Leert das "normalNotes"-Array und füllen  es mit aktualisierten Daten aus Firestore
       this.users = [];
       list.forEach(element => {
-        this.users.push(new User(element.data()));
+        this.users.push(new User(element.id, element.data()));
       });
     });
   }
 
-  ngOnDestroy() {
-    this.unsubUsers();
-  }
 
   getUsersRef() {
     return collection(this.firestore, 'users')

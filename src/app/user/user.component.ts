@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.component';
 import { UserService } from '../firebase-services/user.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,18 +14,24 @@ export class UserComponent {
   displayedColumns: string[] = ['name', 'eMail', 'city'];
 
 
-  constructor(public dialog: MatDialog, private userService: UserService) {
+  constructor(public dialog: MatDialog, private userService: UserService, private router: Router) {
 
   }
 
 
   getList() {
+
     return this.userService.users;
+  }
+
+
+  navigateToUserDetails(userId: string) {
+    this.router.navigate(['/user', userId]);
+    console.log('okay');
   }
 
   openDialog() {
     this.dialog.open(DialogAddUserComponent);
-
   }
 }
 
