@@ -1,17 +1,32 @@
-<div class="user-detail-header">
-    <div class="user-container">
-        <img src="./assets/img/profile-placeholder.png">
-        <div class="user-details">
-            <h2>Max Mustermann</h2>
-            <p>email@email.de</p>
+<ng-container *ngIf="userData$ | async as userData">
+    <div class="user-detail-header">
+        <button mat-icon-button class="pin-right-upper-corner" [matMenuTriggerFor]="userMenu">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #userMenu="matMenu">
+            <button mat-menu-item (click)="editMenuUser()">Edit</button>
+        </mat-menu>
+        <div class="user-container">
+            <img src="./assets/img/profile-placeholder.png">
+            <div class="user-details">
+                <h2>{{userData.firstName}} {{userData.lastName}}</h2>
+                <p>{{userData.eMail}}</p>
+            </div>
         </div>
     </div>
-</div>
-<mat-card class="mt-32">
-    <mat-card-header>
-        <mat-card-title>Address</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-        Musterstr. 23 <br>
-        12345 Musterstradt
-    </mat-card-content>
+    <mat-card class="mt-32">
+        <button mat-icon-button class="pin-right-upper-corner" [matMenuTriggerFor]="addressMenu">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #addressMenu="matMenu">
+            <button mat-menu-item (click)="editMenuAdress()">Edit</button>
+        </mat-menu>
+        <mat-card-header>
+            <mat-card-title>Address</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            {{userData.address}} <br>
+            {{userData.zipCode}} {{userData.city}}
+        </mat-card-content>
+    </mat-card>
+</ng-container>

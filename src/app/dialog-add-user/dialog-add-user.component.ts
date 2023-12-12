@@ -20,7 +20,7 @@ export class DialogAddUserComponent {
     if (this.birthDate) {
       this.user.birthDate = this.birthDate.getTime();
     }
-    this.userService.addUser(this.user.toJason());
+    this.userService.addUser(this.user.toJson());
     setTimeout(() => {
       this.loading = false;
       this.dialogRef.close();

@@ -20,14 +20,12 @@ export class UserComponent {
 
 
   getList() {
-
     return this.userService.users;
   }
 
 
   navigateToUserDetails(userId: string) {
     this.router.navigate(['/user', userId]);
-    console.log('okay');
   }
 
   openDialog() {

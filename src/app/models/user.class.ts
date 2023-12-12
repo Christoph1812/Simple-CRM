@@ -9,17 +9,17 @@ export class User {
     city: string;
 
     constructor(id?: any, obj?: any) {
-        this.id = id ? id : "";
+        this.id = id ? id : '';
         this.firstName = obj ? obj.firstName : '';
         this.lastName = obj ? obj.lastName : '';
         this.eMail = obj ? obj.eMail : '';
         this.birthDate = obj ? obj.birthDate : '';
-        this.address = obj ? obj.adress : '';
+        this.address = obj ? obj.address : ''; // corrected attribute name
         this.zipCode = obj ? obj.zipCode : '';
         this.city = obj ? obj.city : '';
     }
 
-    public toJason() {
+    public toJson() { // corrected method name
         return {
             id: this.id,
             firstName: this.firstName,
@@ -29,9 +29,6 @@ export class User {
             address: this.address,
             zipCode: this.zipCode,
             city: this.city,
-        }
-
-
+        };
     }
-
 }
