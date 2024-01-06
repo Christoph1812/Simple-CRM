@@ -18,18 +18,22 @@ mat-drawer-container {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    img {
+        width: 150px;
+        height: 100px;
+        object-fit: contain;
+    }
 }
 
 mat-toolbar {
     min-height: 56px;
-    height: 56px;
+    height: 100px;
 
     .header {
         display: flex;
         align-items: center;
         gap: 20px;
-
-
     }
 }
 

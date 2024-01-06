@@ -18,15 +18,16 @@ export class DialogEditUserComponent {
 
   async saveUser() {
     this.loading = true;
+    try {
+      this.userService.updateUser(this.userData);
+      console.log('updateUser erfolgreich ausgeführt');
 
-    await this.userService.updateUser(this.userData);
-
-    setTimeout(() => {
-      this.loading = false;
       this.dialogRef.close();
-    }, 900);
+    } catch (error) {
+      console.error('Fehler beim updateUser:', error);
+    }
+    this.loading = false;
   };
-
 
   closeDialog() {
     this.dialogRef.close();

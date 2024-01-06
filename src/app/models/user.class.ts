@@ -14,12 +14,12 @@ export class User {
         this.lastName = obj ? obj.lastName : '';
         this.eMail = obj ? obj.eMail : '';
         this.birthDate = obj ? obj.birthDate : '';
-        this.address = obj ? obj.address : ''; // corrected attribute name
+        this.address = obj ? obj.address : '';
         this.zipCode = obj ? obj.zipCode : '';
         this.city = obj ? obj.city : '';
     }
 
-    public toJson() { // corrected method name
+    public toJson() {
         return {
             id: this.id,
             firstName: this.firstName,

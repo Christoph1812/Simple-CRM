@@ -1,7 +1,7 @@
 import { Injectable, OnDestroy, inject } from '@angular/core';
 import { Firestore, addDoc, collection, doc, onSnapshot, updateDoc, orderBy, limit, where, query, getDoc, getDocs } from '@angular/fire/firestore';
 import { User } from '../models/user.class';
-import { Observable, catchError, from, map, of, tap } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, from, map, of, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +9,7 @@ import { Observable, catchError, from, map, of, tap } from 'rxjs';
 
 export class UserService implements OnDestroy {
   users: User[] = [];
+  private userSubject = new BehaviorSubject<User | null>(null);
 
 
   unsubUsers;
@@ -18,11 +19,15 @@ export class UserService implements OnDestroy {
 
   constructor() {
     this.unsubUsers = this.subUsersList();
+
   }
+
 
   ngOnDestroy() {
     this.unsubUsers();
+
   }
+
 
 
   async addUser(item: any) {
@@ -30,6 +35,7 @@ export class UserService implements OnDestroy {
       (err) => { console.log(err) }
     )
   }
+
 
   async updateUser(user: any) {
     try {
@@ -45,24 +51,20 @@ export class UserService implements OnDestroy {
 
 
 
-  getUser(userId: string): Observable<any> {
 
-    const userDocRef = doc(this.getUsersRef(), userId);
 
-    return from(getDoc(userDocRef)).pipe(
-      map(userDocSnap => {
-        if (userDocSnap.exists()) {
-          const userData = userDocSnap.data();
-          return userData;
-        } else {
-          console.log('Benutzer nicht gefunden');
-          return null;
-        }
-      })
+  subUser(userId: string): void {
+    const userDocRef = this.getSingleDocRef('users', userId);
 
-    );
+    onSnapshot(userDocRef, (userDocSnap) => {
+      const userData = userDocSnap.data() as User;
+      this.userSubject.next(new User(userId, userData));
+    });
   }
 
+  getUserObservable(): BehaviorSubject<User | null> {
+    return this.userSubject;
+  }
 
   subUsersList() {
     const q = query(this.getUsersRef())
@@ -70,12 +72,9 @@ export class UserService implements OnDestroy {
       this.users = [];
       list.forEach(element => {
         this.users.push(new User(element.id, element.data()));
-
       });
     });
   }
-
-
 
 
   getUsersRef() {

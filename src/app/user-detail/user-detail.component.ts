@@ -1,7 +1,6 @@
 import { Component, NgZone, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../firebase-services/user.service';
-import { Observable, map } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogEditUserComponent } from '../dialog-edit-user/dialog-edit-user.component';
 import { DialogEditAddressComponent } from '../dialog-edit-address/dialog-edit-address.component';
@@ -16,32 +15,32 @@ export class UserDetailComponent implements OnInit {
   constructor(public dialog: MatDialog, private route: ActivatedRoute, private userService: UserService) { }
 
   userId: string = '';
-  userData$: Observable<any> | undefined;
+  userData: any;
+
 
   ngOnInit() {
     const idFromRoute = this.route.snapshot.paramMap.get('id');
 
     if (idFromRoute !== null) {
       this.userId = idFromRoute;
-      this.userData$ = this.userService.getUser(this.userId).pipe(
-        map(user => {
-          // Fügen Sie die userId zum Benutzerobjekt hinzu
-          return { ...user, id: this.userId };
-        })
-      );
-
-
     }
+
+    this.subscribeToChanges();
+
+  }
+
+  subscribeToChanges(): void {
+    this.userService.subUser(this.userId);
+    this.userService.getUserObservable().subscribe((user) => {
+      this.userData = user;
+    });
   }
 
 
+
   editMenuUser() {
-    if (this.userData$)
-      this.userData$.subscribe(user => {
-        if (user) {
-          this.dialog.open(DialogEditUserComponent, { data: user });
-        }
-      });
+    this.dialog.open(DialogEditUserComponent, { data: this.userData });
+
   }
 
 
