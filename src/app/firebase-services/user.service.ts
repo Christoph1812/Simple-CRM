@@ -1,7 +1,7 @@
 import { Injectable, OnDestroy, inject } from '@angular/core';
 import { Firestore, addDoc, collection, doc, onSnapshot, updateDoc, orderBy, limit, where, query, getDoc, getDocs } from '@angular/fire/firestore';
 import { User } from '../models/user.class';
-import { BehaviorSubject, Observable, catchError, from, map, of, tap } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'

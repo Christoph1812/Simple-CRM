@@ -1,1 +1,4 @@
-<app-menu></app-menu>
+<div>
+    <app-menu *ngIf="loggedIn"></app-menu>
+    <app-login *ngIf="notLoggedIn"></app-login>
+</div>

@@ -30,6 +30,8 @@ import { DialogEditUserComponent } from './dialog-edit-user/dialog-edit-user.com
 import { SalesPipelineComponent } from './sales-pipeline/sales-pipeline.component';
 import { ProductsComponent } from './products/products.component';
 import { CalendarComponent } from './calendar/calendar.component';
+import { LoginComponent } from './login/login.component';
+import { LeadsComponent } from './leads/leads.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,6 +45,8 @@ import { CalendarComponent } from './calendar/calendar.component';
     SalesPipelineComponent,
     ProductsComponent,
     CalendarComponent,
+    LoginComponent,
+    LeadsComponent,
 
   ],
   imports: [

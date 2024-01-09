@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { UserService } from '../firebase-services/user.service';
 import { Observable } from 'rxjs';
+import { User } from '../models/user.class';
 
 @Component({
   selector: 'app-dialog-edit-user',
