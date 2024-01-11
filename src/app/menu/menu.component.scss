@@ -1,5 +1,10 @@
 mat-drawer-container {
     height: 100vh;
+
+}
+
+mat-drawer {
+    background-color: var(--primaryColor);
 }
 
 .d-none {
@@ -31,8 +36,10 @@ mat-drawer-container {
 }
 
 mat-toolbar {
+
     min-height: 56px;
     height: 100px;
+    background-color: var(--primaryColor);
 
     .header {
         display: flex;
@@ -66,6 +73,13 @@ mat-toolbar {
     }
 }
 
+mat-icon {
+    color: white;
+}
+
+
 .router-container {
+    min-height: calc(100vh - 116px);
+    background-color: var(--secondaryColor);
     padding: 16px 40px 0;
 }
