@@ -13,8 +13,8 @@ export class AppComponent {
   constructor(private router: Router) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        this.notLoggedIn = event.url != '/login';
-        this.loggedIn = event.url === '/dashboard';
+        this.notLoggedIn = event.url === '/';
+        this.loggedIn = event.url != '/';
       }
     });
   }

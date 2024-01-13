@@ -3,24 +3,31 @@ body {
 }
 
 
-
 .login-container {
     margin: 0;
     height: 100vh;
-    background-color: rgb(183, 7, 7);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: var(--secondaryColor);
     display: flex;
     justify-content: center;
     align-items: center;
+}
 
+.back-arrow {
+    margin-top: 16px;
+    margin-left: 16px;
+    width: 40px;
+    height: 40px;
 }
 
 
+
 mat-card {
+    box-shadow: 0px 0px 16px 3px rgba(71, 101, 133, 0.7);
     background-color: var(--primaryColor);
     color: var(--textColor);
     width: 400px;
     height: max-content;
+    padding-bottom: 20px;
 }
 
 mat-card-header {
@@ -29,9 +36,28 @@ mat-card-header {
     align-items: center;
 
     img {
+        margin-bottom: 20px;
         width: 150px;
         height: 100px;
         object-fit: contain;
     }
+}
 
+mat-card-actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 25px;
+
+    button {
+        color: white;
+        box-shadow: 0px 0px 16px 3px rgba(0, 0, 0, 0.83);
+        width: 80%;
+
+        &:hover {
+            background-color: var(--buttonColor);
+            color: black;
+            font-weight: 800;
+        }
+    }
 }

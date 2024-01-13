@@ -3,3 +3,26 @@
     bottom: 20px;
     right: 20px;
 }
+
+table {
+    color: white !important;
+
+    th {
+        background-color: var(--primaryColor);
+    }
+
+    tr {
+        &:nth-child(even) {
+            background-color: var(--primaryColor);
+        }
+
+        &:nth-child(odd) {
+            background-color: var(--secondaryColor);
+        }
+    }
+
+    td,
+    tr {
+        color: var(--textColor)
+    }
+}

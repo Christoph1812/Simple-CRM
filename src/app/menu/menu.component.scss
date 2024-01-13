@@ -1,6 +1,5 @@
 mat-drawer-container {
     height: 100vh;
-
 }
 
 mat-drawer {
@@ -35,16 +34,26 @@ mat-drawer {
     }
 }
 
+.mat-toolbar-row,
+.mat-toolbar-single-row {
+    padding: 0 !important;
+}
+
+
 mat-toolbar {
-
     min-height: 56px;
-    height: 100px;
-    background-color: var(--primaryColor);
+    background-color: var(--backgroundColor);
 
-    .header {
+
+    .burger-menu {
+        background-color: var(--buttonColor);
+        width: 60px;
+        height: 100%;
         display: flex;
         align-items: center;
-        gap: 20px;
+        justify-content: center;
+        border-bottom-right-radius: 50%;
+
     }
 }
 
@@ -55,6 +64,7 @@ mat-toolbar {
 
 
     li {
+        color: var(--textColor);
         padding-left: 48px;
         height: 48px;
         display: flex;
@@ -80,6 +90,6 @@ mat-icon {
 
 .router-container {
     min-height: calc(100vh - 116px);
-    background-color: var(--secondaryColor);
+    background-color: var(--backgroundColor);
     padding: 16px 40px 0;
 }

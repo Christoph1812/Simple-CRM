@@ -12,17 +12,12 @@
             <li [routerLink]="'/calendar'"><mat-icon>calendar_month</mat-icon>Calendar</li>
         </ul>
     </mat-drawer>
-
-    <div class="example-sidenav-content">
-        <mat-toolbar>
-            <div class="header">
-                <mat-icon class="menu-icon" no-color (click)="drawer.toggle()">menu</mat-icon>
-
-            </div>
-        </mat-toolbar>
-    </div>
+    <mat-toolbar>
+        <div class="burger-menu">
+            <mat-icon class="menu-icon" no-color (click)="drawer.toggle()">menu</mat-icon>
+        </div>
+    </mat-toolbar>
     <div class="router-container">
         <router-outlet></router-outlet>
     </div>
-
 </mat-drawer-container>
