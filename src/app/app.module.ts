@@ -18,8 +18,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
-import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
@@ -32,6 +30,11 @@ import { ProductsComponent } from './products/products.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { LoginComponent } from './login/login.component';
 import { LeadsComponent } from './leads/leads.component';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { getAuth, provideAuth } from '@angular/fire/auth';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,7 +73,8 @@ import { LeadsComponent } from './leads/leads.component';
     MatMenuModule,
     ReactiveFormsModule,
     provideFirebaseApp(() => initializeApp({ "projectId": "simple-crm-a3027", "appId": "1:303776556573:web:19492c71444bfe650108f4", "storageBucket": "simple-crm-a3027.appspot.com", "apiKey": "AIzaSyDQhNONRPOVEp-gq9aqEmBwWztuxSIDslE", "authDomain": "simple-crm-a3027.firebaseapp.com", "messagingSenderId": "303776556573" })),
-    provideFirestore(() => getFirestore())
+    provideFirestore(() => getFirestore()),
+    provideAuth(() => getAuth()),
   ],
   providers: [],
   bootstrap: [AppComponent]
