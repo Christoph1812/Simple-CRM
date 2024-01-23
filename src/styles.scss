@@ -5,6 +5,8 @@
     --textColor: white;
     --accentColor: black;
     --buttonColor: #99E687;
+    --succesColor: #5beb0e;
+    --errorColor: #eb0e15;
 }
 
 html,
@@ -24,4 +26,17 @@ body {
 
 .full-width {
     width: 100%
+}
+
+.success-snackbar {
+    --mdc-snackbar-container-color: var(--succesColor);
+    --mdc-snackbar-supporting-text-color: black;
+    --mat-snack-bar-button-color: var(--succesColor);
+}
+
+
+.error-snackbar {
+    --mdc-snackbar-container-color: var(--errorColor);
+    --mdc-snackbar-supporting-text-color: black;
+    --mat-snack-bar-button-color: var(--errorColor);
 }

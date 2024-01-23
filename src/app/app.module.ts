@@ -30,9 +30,11 @@ import { ProductsComponent } from './products/products.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { LoginComponent } from './login/login.component';
 import { LeadsComponent } from './leads/leads.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getAuth, provideAuth } from '@angular/fire/auth';
+import { LegalNoticeComponent } from './legal-notice/legal-notice.component';
 
 
 @NgModule({
@@ -50,6 +52,7 @@ import { getAuth, provideAuth } from '@angular/fire/auth';
     CalendarComponent,
     LoginComponent,
     LeadsComponent,
+    LegalNoticeComponent,
 
   ],
   imports: [
@@ -72,6 +75,7 @@ import { getAuth, provideAuth } from '@angular/fire/auth';
     MatTableModule,
     MatMenuModule,
     ReactiveFormsModule,
+    MatSnackBarModule,
     provideFirebaseApp(() => initializeApp({ "projectId": "simple-crm-a3027", "appId": "1:303776556573:web:19492c71444bfe650108f4", "storageBucket": "simple-crm-a3027.appspot.com", "apiKey": "AIzaSyDQhNONRPOVEp-gq9aqEmBwWztuxSIDslE", "authDomain": "simple-crm-a3027.firebaseapp.com", "messagingSenderId": "303776556573" })),
     provideFirestore(() => getFirestore()),
     provideAuth(() => getAuth()),

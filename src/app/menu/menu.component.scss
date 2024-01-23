@@ -58,6 +58,10 @@ mat-toolbar {
 }
 
 .menu-points {
+    height: calc(100vh - 116px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     list-style-type: none;
     margin: 0;
     padding: 0;

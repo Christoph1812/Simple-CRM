@@ -17,6 +17,7 @@ body {
     margin-left: 16px;
     width: 40px;
     height: 40px;
+    cursor: pointer;
 }
 
 mat-card {
@@ -68,8 +69,30 @@ form {
     align-items: center;
 
     mat-form-field {
+        --mdc-outlined-text-field-outline-color: white;
         width: 80%;
+
+        &:hover {
+            --mdc-outlined-text-field-hover-outline-color: white;
+        }
+
+        mat-label {
+            color: var(--textColor);
+        }
+
+
+        input {
+            color: var(--textColor);
+        }
+
+        input::placeholder {
+            color: var(--textColor);
+        }
+
     }
+
+
+
 
     button {
         color: white;
@@ -83,4 +106,9 @@ form {
             font-weight: 800;
         }
     }
+
+    .password {
+        cursor: pointer;
+    }
+
 }

@@ -4,13 +4,21 @@
             <img src="./assets/img/logo.svg" alt="Logo">
         </div>
 
-        <ul class="menu-points">
-            <li [routerLink]="'/dashboard'"> <mat-icon>space_dashboard</mat-icon> Dashboard</li>
-            <li [routerLink]="'/sales-pipeline'"><mat-icon>view_kanban</mat-icon> Sales pipeline</li>
-            <li [routerLink]="'/user'"><mat-icon>perm_identity</mat-icon> User</li>
-            <li [routerLink]="'/products'"><mat-icon>sell</mat-icon> Products</li>
-            <li [routerLink]="'/calendar'"><mat-icon>calendar_month</mat-icon>Calendar</li>
-        </ul>
+        <div class="menu-points">
+            <ul>
+                <li [routerLink]="'/dashboard'"> <mat-icon>space_dashboard</mat-icon> Dashboard</li>
+                <li [routerLink]="'/sales-pipeline'"><mat-icon>view_kanban</mat-icon> Sales Pipeline</li>
+                <li [routerLink]="'/user'"><mat-icon>contacts</mat-icon> Contacts</li>
+                <li [routerLink]="'/leads'"><mat-icon>person_search</mat-icon>Leads</li>
+                <li [routerLink]="'/products'"><mat-icon>sell</mat-icon> Products</li>
+                <li [routerLink]="'/calendar'"><mat-icon>calendar_month</mat-icon>Calendar</li>
+            </ul>
+            <ul>
+                <li [routerLink]="'/legal-notice'"><mat-icon>privacy_tip</mat-icon>Legal Notice</li>
+                <li><mat-icon>logout</mat-icon>LOGOUT</li>
+            </ul>
+        </div>
+
     </mat-drawer>
     <mat-toolbar>
         <div class="burger-menu">

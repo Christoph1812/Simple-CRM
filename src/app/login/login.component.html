@@ -10,7 +10,7 @@
             <button mat-button (click)="showSignUp = !showSignUp">SIGN UP</button>
             <button mat-button (click)="loginAsGuest()">GUEST</button>
         </mat-card-actions>
-        <form *ngIf="showLogin" [formGroup]="loginForm" (ngSubmit)="onLogin()">
+        <form *ngIf="showLogin" [formGroup]="loginForm" (ngSubmit)="loginUser()">
             <mat-form-field appearance="outline">
                 <mat-label>Email</mat-label>
                 <input matInput placeholder="Email" formControlName="email">
@@ -18,8 +18,10 @@
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Password</mat-label>
-                <input matInput placeholder="Password" formControlName="password">
-                <mat-icon matSuffix>lock</mat-icon>
+                <input matInput [type]="hideLogin ? 'password' : 'text'" placeholder="Password"
+                    formControlName="password">
+                <mat-icon class="password" matSuffix (click)="hideLogin = !hideLogin">{{hideLogin ? 'visibility_off' :
+                    'visibility'}}</mat-icon>
             </mat-form-field>
             <button mat-button typ="submit" [disabled]="!loginForm.valid">LOGIN</button>
         </form>
@@ -29,17 +31,28 @@
                 <input matInput placeholder="Email" formControlName="email">
                 <mat-icon matSuffix>mail</mat-icon>
             </mat-form-field>
-            <mat-form-field appearance="outline">
+            <mat-form-field matTooltipPosition="after"
+                matTooltip="  Password must contain at least one uppercase letter, one lowercase letter, and one number."
+                appearance="outline">
                 <mat-label>Password</mat-label>
-                <input matInput placeholder="Placeholder" formControlName="password">
-                <mat-icon matSuffix>lock</mat-icon>
+                <input matInput [type]="hideSignup ? 'password' : 'text'" placeholder="Password"
+                    formControlName="password">
+                <mat-icon class="password" matSuffix (click)="hideSignup = !hideSignup">{{hideSignup ?
+                    'visibility_off':'visibility'}}</mat-icon>
             </mat-form-field>
+            <div
+                *ngIf="signupForm.get('password')?.touched  && signupForm.get('password')?.invalid && signupForm.get('password')?.hasError('pattern')">
+                Password must contain at least one uppercase letter, one lowercase letter, and one number.
+            </div>
             <mat-form-field appearance="outline">
-                <mat-label>repeat password</mat-label>
-                <input matInput placeholder="repeat password" formControlName="confirmPassword">
-                <mat-icon matSuffix>lock</mat-icon>
+                <mat-label>repeat Password</mat-label>
+                <input matInput [type]="hideConfirm ? 'password' : 'text'" placeholder="repeat Password"
+                    formControlName="confirmPassword">
+                <mat-icon class="password" matSuffix (click)="hideConfirm = !hideConfirm">{{hideConfirm ?
+                    'visibility_off' :
+                    'visibility'}}</mat-icon>
             </mat-form-field>
-            <button mat-button>SIGNUP</button>
+            <button mat-button typ="submit" [disabled]="!signupForm.valid">SIGNUP</button>
         </form>
     </mat-card>
 </div>
