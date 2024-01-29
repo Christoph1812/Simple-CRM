@@ -1,3 +1,15 @@
+<header>
+  <h1>Leads</h1>
+  <select>
+    <option value="Filter 1">Company</option>
+    <option value="Filter 2">City</option>
+    <option>Bereich</option>
+  </select>
+  <div class="search-field">
+    <input class="search-field" type="text" placeholder="search">
+    <mat-icon>search</mat-icon>
+  </div>
+</header>
 <table mat-table [dataSource]="getList()" [routerLink]="'/user/' " class="mat-elevation-z8">
   <ng-container matColumnDef="name">
     <th mat-header-cell *matHeaderCellDef> Name </th>

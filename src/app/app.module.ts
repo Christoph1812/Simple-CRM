@@ -35,6 +35,7 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { LegalNoticeComponent } from './legal-notice/legal-notice.component';
+import { DataProtectionComponent } from './data-protection/data-protection.component';
 
 
 @NgModule({
@@ -53,6 +54,7 @@ import { LegalNoticeComponent } from './legal-notice/legal-notice.component';
     LoginComponent,
     LeadsComponent,
     LegalNoticeComponent,
+    DataProtectionComponent,
 
   ],
   imports: [

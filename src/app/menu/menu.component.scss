@@ -87,13 +87,10 @@ mat-toolbar {
     }
 }
 
-mat-icon {
-    color: white;
-}
 
 
 .router-container {
-    min-height: calc(100vh - 116px);
+    min-height: calc(100vh - 80px);
     background-color: var(--backgroundColor);
     padding: 16px 40px 0;
 }
