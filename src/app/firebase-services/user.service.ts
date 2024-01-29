@@ -48,11 +48,6 @@ export class UserService implements OnDestroy {
   }
 
 
-
-
-
-
-
   subUser(userId: string): void {
     const userDocRef = this.getSingleDocRef('users', userId);
 

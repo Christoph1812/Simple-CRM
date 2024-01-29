@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthenticationService } from '../firebase-services/authentication.service';
 
 @Component({
   selector: 'app-menu',
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class MenuComponent {
 
+  constructor(private authService: AuthenticationService) {
+
+  }
+
+  logout() {
+    this.authService.logout();
+  }
 }

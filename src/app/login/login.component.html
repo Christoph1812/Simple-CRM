@@ -8,7 +8,7 @@
         <mat-card-actions *ngIf="!showLogin && !showSignUp">
             <button mat-button (click)="showLogin = !showLogin">LOGIN</button>
             <button mat-button (click)="showSignUp = !showSignUp">SIGN UP</button>
-            <button mat-button (click)="loginAsGuest()">GUEST</button>
+            <button mat-button (click)="routeToDashboard()">GUEST</button>
         </mat-card-actions>
         <form *ngIf="showLogin" [formGroup]="loginForm" (ngSubmit)="loginUser()">
             <mat-form-field appearance="outline">
@@ -31,6 +31,10 @@
                 <input matInput placeholder="Email" formControlName="email">
                 <mat-icon matSuffix>mail</mat-icon>
             </mat-form-field>
+            <div class="input-error-message"
+                *ngIf="signupForm.get('email')?.touched  && signupForm.get('email')?.invalid">
+                invalid email
+            </div>
             <mat-form-field matTooltipPosition="after"
                 matTooltip="  Password must contain at least one uppercase letter, one lowercase letter, and one number."
                 appearance="outline">
@@ -40,18 +44,22 @@
                 <mat-icon class="password" matSuffix (click)="hideSignup = !hideSignup">{{hideSignup ?
                     'visibility_off':'visibility'}}</mat-icon>
             </mat-form-field>
-            <div
+            <div class="input-error-message"
                 *ngIf="signupForm.get('password')?.touched  && signupForm.get('password')?.invalid && signupForm.get('password')?.hasError('pattern')">
-                Password must contain at least one uppercase letter, one lowercase letter, and one number.
+                invalid password
             </div>
             <mat-form-field appearance="outline">
-                <mat-label>repeat Password</mat-label>
-                <input matInput [type]="hideConfirm ? 'password' : 'text'" placeholder="repeat Password"
+                <mat-label>Confirm Password</mat-label>
+                <input matInput [type]="hideConfirm ? 'password' : 'text'" placeholder="Confirm Password"
                     formControlName="confirmPassword">
                 <mat-icon class="password" matSuffix (click)="hideConfirm = !hideConfirm">{{hideConfirm ?
                     'visibility_off' :
                     'visibility'}}</mat-icon>
             </mat-form-field>
+            <div class="input-error-message"
+                *ngIf="signupForm.get('confirmPassword')?.touched  && signupForm.get('confirmPassword')?.invalid && signupForm.get('password')?.hasError('pattern')">
+                password not matched
+            </div>
             <button mat-button typ="submit" [disabled]="!signupForm.valid">SIGNUP</button>
         </form>
     </mat-card>

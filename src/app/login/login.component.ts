@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../firebase-services/authentication.service';
 import { createUserWithEmailAndPassword } from '@firebase/auth';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { signInWithEmailAndPassword } from '@angular/fire/auth';
+
 
 
 @Component({
@@ -21,10 +23,23 @@ export class LoginComponent {
   hideConfirm = true;
 
 
-
+  /**
+   * Creates an instance of LoginComponet.
+   *
+   * @constructor
+   * @param {Router} router - The Angular router service.
+   * @param {FormBuilder} fb - The Angular form builder service.
+   * @param {AuthenticationService} authService - The authentication service.
+   * @param {MatSnackBar} snackBar - The Angular Material snack bar service.
+   */
   constructor(private router: Router, private fb: FormBuilder, private authService: AuthenticationService, private snackBar: MatSnackBar) {
   }
 
+
+  /**
+ * Initializes the component and calls functions to create
+ * the login and signUp forms.
+ */
   ngOnInit() {
     this.createLoginForm();
     this.createSignUpForm();
@@ -63,16 +78,24 @@ export class LoginComponent {
       this.openSnackBar('User successfully registered', 'success');
     } catch (error: any) {
       this.openSnackBar('Error during user registration: ' + error.message, 'error');
+    } finally {
+      this.signupForm.reset();
     }
-
-
   }
 
 
-  loginUser() {
+  async loginUser() {
     if (this.loginForm.valid) {
       const email = this.loginForm.get('email')!.value;
       const password = this.loginForm.get('password')!.value;
+      try {
+        await signInWithEmailAndPassword(this.authService.auth, email, password);
+        this.backToOptions();
+        this.openSnackBar('A warm welcome', 'success');
+        this.routeToDashboard();
+      } catch (error: any) {
+        this.openSnackBar('Error during user Login: ' + error.message, 'error');
+      }
     }
   }
 
@@ -88,9 +111,6 @@ export class LoginComponent {
   }
 
 
-  loginAsGuest() {
-    this.router.navigate(['/dashboard']);
-  }
 
 
   openSnackBar(message: string, status: 'success' | 'error'): void {
