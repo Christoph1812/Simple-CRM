@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.component';
-import { UserService } from '../firebase-services/user.service';
+import { firebaseData } from '../firebase-services/firebaseData.service';
 import { Router } from '@angular/router';
 
 
@@ -14,13 +14,13 @@ export class UserComponent {
   displayedColumns: string[] = ['name', 'eMail', 'city'];
 
 
-  constructor(public dialog: MatDialog, private userService: UserService, private router: Router) {
+  constructor(public dialog: MatDialog, private firebaseData: firebaseData, private router: Router) {
 
   }
 
 
   getList() {
-    return this.userService.users;
+    return this.firebaseData.users;
   }
 
 

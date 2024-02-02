@@ -1,28 +1,6 @@
-// header {
-//     padding: 60px;
-//     width: calc(100% - 120px);
-//     height: calc(100% - 120px);
-//     background-color: var(--secondaryColor);
-//     border-radius: 20px;
-//     display: flex;
-//     justify-content: space-between;
-//     align-items: center;
-
-
-
-//     h1 {
-//         font-size: 65px;
-//         color: var(--textColor)
-//     }
-
-//     .search-field {
-//         display: flex;
-//         align-items: center;
-//         gap: 6px;
-//         width: 250px;
-//         height: 30px;
-//         border-radius: 6px;
-
-//     }
-
-// }
+.add-user-btn {
+    --mdc-fab-container-color: var(--primaryColor);
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}

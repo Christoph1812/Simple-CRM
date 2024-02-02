@@ -1,8 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { UserService } from '../firebase-services/user.service';
-import { Observable } from 'rxjs';
-import { User } from '../models/user.class';
+import { firebaseData } from '../firebase-services/firebaseData.service';
+
 
 @Component({
   selector: 'app-dialog-edit-user',
@@ -13,14 +12,14 @@ export class DialogEditUserComponent {
   loading = false;
   userData: any;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<DialogEditUserComponent>, private userService: UserService) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<DialogEditUserComponent>, private firebaseData: firebaseData) {
     this.userData = { ...data };
   }
 
   async saveUser() {
     this.loading = true;
     try {
-      this.userService.updateUser(this.userData);
+      this.firebaseData.updateUser(this.userData);
       console.log('updateUser erfolgreich ausgeführt');
 
       this.dialogRef.close();

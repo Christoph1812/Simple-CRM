@@ -36,6 +36,7 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { LegalNoticeComponent } from './legal-notice/legal-notice.component';
 import { DataProtectionComponent } from './data-protection/data-protection.component';
+import { DialogAddLeadComponent } from './leads/dialog-add-lead/dialog-add-lead.component';
 
 
 @NgModule({
@@ -55,6 +56,7 @@ import { DataProtectionComponent } from './data-protection/data-protection.compo
     LeadsComponent,
     LegalNoticeComponent,
     DataProtectionComponent,
+    DialogAddLeadComponent,
 
   ],
   imports: [

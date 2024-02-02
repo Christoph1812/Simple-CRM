@@ -72,5 +72,30 @@ header {
         border-radius: 6px;
 
     }
-
 }
+
+// table for Leads, Customer and Products
+table {
+    color: white !important;
+
+    th {
+        background-color: var(--primaryColor) !important;
+        color: white !important;
+    }
+
+    tr {
+        &:nth-child(even) {
+            background-color: var(--primaryColor);
+        }
+
+        &:nth-child(odd) {
+            background-color: var(--secondaryColor);
+        }
+    }
+
+    td,
+    tr {
+        color: var(--textColor)
+    }
+}
+

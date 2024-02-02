@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { UserService } from '../firebase-services/user.service';
+import { firebaseData } from '../firebase-services/firebaseData.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogEditUserComponent } from '../dialog-edit-user/dialog-edit-user.component';
 import { DialogEditAddressComponent } from '../dialog-edit-address/dialog-edit-address.component';
@@ -12,7 +12,7 @@ import { DialogEditAddressComponent } from '../dialog-edit-address/dialog-edit-a
 })
 export class UserDetailComponent implements OnInit {
 
-  constructor(public dialog: MatDialog, private route: ActivatedRoute, private userService: UserService) { }
+  constructor(public dialog: MatDialog, private route: ActivatedRoute, private firebaseData: firebaseData) { }
 
   userId: string = '';
   userData: any;
@@ -30,8 +30,8 @@ export class UserDetailComponent implements OnInit {
   }
 
   subscribeToChanges(): void {
-    this.userService.subUser(this.userId);
-    this.userService.getUserObservable().subscribe((user) => {
+    this.firebaseData.subUser(this.userId);
+    this.firebaseData.getUserObservable().subscribe((user) => {
       this.userData = user;
     });
   }

@@ -1,12 +1,37 @@
 <header>
     <h1>Leads</h1>
     <select>
-        <option value="Filter 1">Company</option>
-        <option value="Filter 2">City</option>
-        <option>Bereich</option>
+        <option value="noFilter">No Filter</option>
+        <option value="company">Company</option>
+        <option value="location">Location</option>
+        <option value="priority">Priority</option>
     </select>
     <div class="search-field">
         <input class="search-field" type="text" placeholder="search">
         <mat-icon>search</mat-icon>
     </div>
 </header>
+<table mat-table [dataSource]="getList()" [routerLink]="'/user/' " class="mat-elevation-z8">
+    <ng-container matColumnDef="company">
+        <th mat-header-cell *matHeaderCellDef> Company </th>
+        <td mat-cell *matCellDef="let element">
+            {{element.firstName}} {{element.lastName}}
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="location">
+        <th mat-header-cell *matHeaderCellDef> Location </th>
+        <td mat-cell *matCellDef="let element"> {{element.eMail}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="priority">
+        <th mat-header-cell *matHeaderCellDef> Priority </th>
+        <td mat-cell *matCellDef="let element"> {{element.zipCode}} {{element.city}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="navigateToUserDetails(row.id)"></tr>
+</table>
+<button (click)="openDialog()" class="add-user-btn" mat-fab color="primary" matTooltip="Add Lead">
+    <mat-icon>add</mat-icon>
+</button>

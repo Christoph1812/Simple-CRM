@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { User } from '../models/user.class';
-import { UserService } from '../firebase-services/user.service';
+import { firebaseData } from '../firebase-services/firebaseData.service';
 import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
@@ -13,14 +13,14 @@ export class DialogAddUserComponent {
   user = new User();
   birthDate?: Date;
 
-  constructor(private dialogRef: MatDialogRef<DialogAddUserComponent>, private userService: UserService) { }
+  constructor(private dialogRef: MatDialogRef<DialogAddUserComponent>, private firebaseData: firebaseData) { }
 
   saveUser() {
     this.loading = true;
     if (this.birthDate) {
       this.user.birthDate = this.birthDate.getTime();
     }
-    this.userService.addUser(this.user.toJson());
+    this.firebaseData.addUser(this.user.toJson());
     setTimeout(() => {
       this.loading = false;
       this.dialogRef.close();

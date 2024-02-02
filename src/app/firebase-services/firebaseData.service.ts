@@ -7,7 +7,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 
-export class UserService implements OnDestroy {
+export class firebaseData implements OnDestroy {
   users: User[] = [];
   private userSubject = new BehaviorSubject<User | null>(null);
 
