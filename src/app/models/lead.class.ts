@@ -1,4 +1,4 @@
-export class Product {
+export class Lead {
     id: string;
     eMail: string;
     birthDate: number;

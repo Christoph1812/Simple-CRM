@@ -1,6 +1,8 @@
 import { Injectable, OnDestroy, inject } from '@angular/core';
 import { Firestore, addDoc, collection, doc, onSnapshot, updateDoc, query } from '@angular/fire/firestore';
 import { User } from '../models/user.class';
+import { Lead } from '../models/lead.class';
+import { Product } from '../models/product.class';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -9,6 +11,8 @@ import { BehaviorSubject } from 'rxjs';
 
 export class firebaseData implements OnDestroy {
   users: User[] = [];
+  leads: Lead[] = [];
+  products: Product[] = [];
   private userSubject = new BehaviorSubject<User | null>(null);
 
 
@@ -70,6 +74,7 @@ export class firebaseData implements OnDestroy {
       });
     });
   }
+
 
 
   getUsersRef() {

@@ -8,7 +8,7 @@ export class User {
     zipCode: number;
     city: string;
 
-    constructor(id?: any, obj?: any) {
+    constructor(id?: string, obj?: any) {
         this.id = id ? id : '';
         this.firstName = obj ? obj.firstName : '';
         this.lastName = obj ? obj.lastName : '';
