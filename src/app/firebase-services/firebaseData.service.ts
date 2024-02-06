@@ -1,6 +1,6 @@
 import { Injectable, OnDestroy, inject } from '@angular/core';
 import { Firestore, addDoc, collection, doc, onSnapshot, updateDoc, query } from '@angular/fire/firestore';
-import { User } from '../models/user.class';
+import { Customer } from '../models/customer.class';
 import { Lead } from '../models/lead.class';
 import { Product } from '../models/product.class';
 import { BehaviorSubject } from 'rxjs';
@@ -10,41 +10,41 @@ import { BehaviorSubject } from 'rxjs';
 })
 
 export class firebaseData implements OnDestroy {
-  users: User[] = [];
+  customers: Customer[] = [];
   leads: Lead[] = [];
   products: Product[] = [];
-  private userSubject = new BehaviorSubject<User | null>(null);
+  private customerSubject = new BehaviorSubject<Customer | null>(null);
 
 
-  unsubUsers;
+  unsubCustomers;
 
 
   firestore: Firestore = inject(Firestore);
 
   constructor() {
-    this.unsubUsers = this.subUsersList();
+    this.unsubCustomers = this.subCustomersList();
 
   }
 
 
   ngOnDestroy() {
-    this.unsubUsers();
+    this.unsubCustomers();
 
   }
 
 
 
-  async addUser(item: any) {
-    await addDoc(this.getUsersRef(), item).catch(
+  async addCustomer(item: any) {
+    await addDoc(this.getCustomersRef(), item).catch(
       (err) => { console.log(err) }
     )
   }
 
 
-  async updateUser(user: any) {
+  async updateCustomer(customer: any) {
     try {
-      let docRef = this.getSingleDocRef('users', user.id);
-      await updateDoc(docRef, user);
+      let docRef = this.getSingleDocRef('customers', customer.id);
+      await updateDoc(docRef, customer);
       console.log('Dokument erfolgreich aktualisiert');
     } catch (error) {
       console.error('Fehler beim Aktualisieren des Dokuments:', error);
@@ -52,33 +52,33 @@ export class firebaseData implements OnDestroy {
   }
 
 
-  subUser(userId: string): void {
-    const userDocRef = this.getSingleDocRef('users', userId);
+  subCustomer(customerId: string): void {
+    const customerDocRef = this.getSingleDocRef('customers', customerId);
 
-    onSnapshot(userDocRef, (userDocSnap) => {
-      const userData = userDocSnap.data() as User;
-      this.userSubject.next(new User(userId, userData));
+    onSnapshot(customerDocRef, (customerDocSnap) => {
+      const customerData = customerDocSnap.data() as Customer;
+      this.customerSubject.next(new Customer(customerId, customerData));
     });
   }
 
-  getUserObservable(): BehaviorSubject<User | null> {
-    return this.userSubject;
+  getCustomerObservable(): BehaviorSubject<Customer | null> {
+    return this.customerSubject;
   }
 
-  subUsersList() {
-    const q = query(this.getUsersRef())
+  subCustomersList() {
+    const q = query(this.getCustomersRef())
     return onSnapshot(q, (list) => {
-      this.users = [];
+      this.customers = [];
       list.forEach(element => {
-        this.users.push(new User(element.id, element.data()));
+        this.customers.push(new Customer(element.id, element.data()));
       });
     });
   }
 
 
 
-  getUsersRef() {
-    return collection(this.firestore, 'users')
+  getCustomersRef() {
+    return collection(this.firestore, 'customers')
   }
 
 

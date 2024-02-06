@@ -8,10 +8,10 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MenuComponent } from './menu/menu.component';
 import { MatIconModule } from '@angular/material/icon';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { UserComponent } from './user/user.component';
+import { CustomerComponent } from './customer/customer.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { DialogAddUserComponent } from './dialog-add-user/dialog-add-user.component';
+import { DialogAddCustomerComponent } from './customer/dialog-add-customer/dialog-add-customer.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -21,10 +21,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
-import { UserDetailComponent } from './user-detail/user-detail.component';
+
 import { MatMenuModule } from '@angular/material/menu';
-import { DialogEditAddressComponent } from './dialog-edit-address/dialog-edit-address.component';
-import { DialogEditUserComponent } from './dialog-edit-user/dialog-edit-user.component';
+
 import { SalesPipelineComponent } from './sales-pipeline/sales-pipeline.component';
 import { ProductsComponent } from './products/products.component';
 import { CalendarComponent } from './calendar/calendar.component';
@@ -37,6 +36,8 @@ import { getAuth, provideAuth } from '@angular/fire/auth';
 import { LegalNoticeComponent } from './legal-notice/legal-notice.component';
 import { DataProtectionComponent } from './data-protection/data-protection.component';
 import { DialogAddLeadComponent } from './leads/dialog-add-lead/dialog-add-lead.component';
+import { CustomerDetailComponent } from './customer/customer-detail/customer-detail.component';
+import { DialogEditCustomerComponent } from './customer/dialog-edit-customer/dialog-edit-customer.component';
 
 
 @NgModule({
@@ -44,11 +45,10 @@ import { DialogAddLeadComponent } from './leads/dialog-add-lead/dialog-add-lead.
     AppComponent,
     MenuComponent,
     DashboardComponent,
-    UserComponent,
-    DialogAddUserComponent,
-    UserDetailComponent,
-    DialogEditAddressComponent,
-    DialogEditUserComponent,
+    CustomerComponent,
+    DialogAddCustomerComponent,
+    CustomerDetailComponent,
+    DialogEditCustomerComponent,
     SalesPipelineComponent,
     ProductsComponent,
     CalendarComponent,

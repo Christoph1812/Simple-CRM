@@ -75,9 +75,9 @@ export class LoginComponent {
     try {
       await createUserWithEmailAndPassword(this.authService.auth, email, password);
       this.backToOptions();
-      this.openSnackBar('User successfully registered', 'success');
+      this.openSnackBar('Customer successfully registered', 'success');
     } catch (error: any) {
-      this.openSnackBar('Error during user registration: ' + error.message, 'error');
+      this.openSnackBar('Error during customer registration: ' + error.message, 'error');
     } finally {
       this.signupForm.reset();
     }
@@ -94,7 +94,7 @@ export class LoginComponent {
         this.openSnackBar('A warm welcome', 'success');
         this.routeToDashboard();
       } catch (error: any) {
-        this.openSnackBar('Error during user Login: ' + error.message, 'error');
+        this.openSnackBar('Error during customer Login: ' + error.message, 'error');
       }
     }
   }

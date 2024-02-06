@@ -1,0 +1,32 @@
+<ng-container *ngIf="customerData">
+    <div class="customer-detail-header">
+        <button mat-icon-button class="pin-right-upper-corner" [matMenuTriggerFor]="customerMenu">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #customerMenu="matMenu">
+            <button mat-menu-item (click)="editMenuCustomer()">Edit</button>
+        </mat-menu>
+        <div class="customer-container">
+            <img src="./assets/img/profile-placeholder.png">
+            <div class="customer-details">
+                <h2>{{customerData.firstName}} {{customerData.lastName}}</h2>
+                <p>{{customerData.eMail}}</p>
+            </div>
+        </div>
+    </div>
+    <mat-card class="mt-32">
+        <button mat-icon-button class="pin-right-upper-corner" [matMenuTriggerFor]="addressMenu">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #addressMenu="matMenu">
+            <button mat-menu-item>Edit</button>
+        </mat-menu>
+        <mat-card-header>
+            <mat-card-title>Address</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            {{customerData.address}} <br>
+            {{customerData.zipCode}} {{customerData.city}}
+        </mat-card-content>
+    </mat-card>
+</ng-container>

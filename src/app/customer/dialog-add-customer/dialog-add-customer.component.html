@@ -1,21 +1,21 @@
 <div class="dialog-container">
     <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
-    <h1 mat-dialog-title>Add User</h1>
+    <h1 mat-dialog-title>Add Customer</h1>
     <div mat-dialog-content>
         <div class="input-fields">
             <mat-form-field appearance="outline">
                 <mat-label>First Name</mat-label>
-                <input [disabled]="loading" [(ngModel)]="user.firstName" matInput>
+                <input [disabled]="loading" [(ngModel)]="customer.firstName" matInput>
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Last Name</mat-label>
-                <input [disabled]="loading" [(ngModel)]="user.lastName" matInput>
+                <input [disabled]="loading" [(ngModel)]="customer.lastName" matInput>
             </mat-form-field>
         </div>
         <div>
             <mat-form-field appearance="outline" class="full-width">
                 <mat-label>E-mail</mat-label>
-                <input [disabled]="loading" [(ngModel)]="user.eMail" matInput>
+                <input [disabled]="loading" [(ngModel)]="customer.eMail" matInput>
             </mat-form-field>
         </div>
         <div>
@@ -29,22 +29,22 @@
         <div>
             <mat-form-field appearance="outline" class="full-width">
                 <mat-label>Street + House No.</mat-label>
-                <input [disabled]="loading" [(ngModel)]="user.address" matInput>
+                <input [disabled]="loading" [(ngModel)]="customer.address" matInput>
             </mat-form-field>
         </div>
         <div class="input-fields">
             <mat-form-field appearance="outline">
                 <mat-label>Zip Code</mat-label>
-                <input [disabled]="loading" [(ngModel)]="user.zipCode" matInput>
+                <input [disabled]="loading" [(ngModel)]="customer.zipCode" matInput>
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>City</mat-label>
-                <input [disabled]="loading" [(ngModel)]="user.city" matInput>
+                <input [disabled]="loading" [(ngModel)]="customer.city" matInput>
             </mat-form-field>
         </div>
     </div>
     <div mat-dialog-actions>
         <button mat-button [disabled]="loading" (click)="closeDialog()">Cancel</button>
-        <button mat-button [disabled]="loading" (click)="saveUser()" cdkFocusInitial>Save</button>
+        <button mat-button [disabled]="loading" (click)="saveCustomer()" cdkFocusInitial>Save</button>
     </div>
 </div>

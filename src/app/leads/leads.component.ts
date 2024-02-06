@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { firebaseData } from '../firebase-services/firebaseData.service';
 import { Router } from '@angular/router';
-import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.component';
+import { DialogAddCustomerComponent } from '../customer/dialog-add-customer/dialog-add-customer.component';
 
 @Component({
   selector: 'app-leads',
@@ -18,16 +18,16 @@ export class LeadsComponent {
   }
 
   getList() {
-    return this.firebaseData.users;
+    return this.firebaseData.customers;
   }
 
 
-  navigateToUserDetails(userId: string) {
-    this.router.navigate(['/user', userId]);
+  navigateToCustomerDetails(customerId: string) {
+    this.router.navigate(['/customer', customerId]);
   }
 
   openDialog() {
-    this.dialog.open(DialogAddUserComponent);
+    this.dialog.open(DialogAddCustomerComponent);
   }
 }
 
