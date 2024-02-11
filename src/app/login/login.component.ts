@@ -16,11 +16,11 @@ import { signInWithEmailAndPassword } from '@angular/fire/auth';
 export class LoginComponent {
   loginForm!: FormGroup;
   signupForm!: FormGroup;
-  showLogin: boolean = false;
-  showSignUp: boolean = false;
-  hideLogin = true;
-  hideSignup = true;
-  hideConfirm = true;
+  showLogin: boolean = false; // show the login form
+  showSignUp: boolean = false; // show the signup form
+  hideLogin = true; // show or hide the login password
+  hideSignup = true; // show or hide the signup password
+  hideConfirm = true; // show or hide the confirm password
 
 
   /**
@@ -45,6 +45,10 @@ export class LoginComponent {
     this.createSignUpForm();
   }
 
+
+  /**
+   * Creates the login form with email and password fields.
+   */
   createLoginForm() {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -53,6 +57,9 @@ export class LoginComponent {
   }
 
 
+  /**
+   *  Creates the sign-up form with email, password, and confirmPassword fields.
+   */
   createSignUpForm() {
     this.signupForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -62,13 +69,21 @@ export class LoginComponent {
   }
 
 
+  /**
+   * Validates if the password and confirmPassword fields match.
+   *  @param {FormGroup} formGroup - The form group containing the password and confirmPassword fields.
+   * @returns {ValidationErrors | null} Returns null if the passwords match, otherwise returns an object with 'passwordismatch' property set to true.
+   */
   matchPassword(formGroup: FormGroup) {
     const password = formGroup.get('password')?.value;
     const confirmPassword = formGroup.get('confirmPassword')?.value;
-    return password === confirmPassword ? null : { passwordMismatch: true };
+    return password === confirmPassword ? null : { passwordismatch: true };
   }
 
 
+  /**
+   * Sign up a new user and reset the form and shows the options.
+   */
   async signUpUser() {
     const email = this.signupForm.get('email')!.value;
     const password = this.signupForm.get('password')!.value;
@@ -84,6 +99,9 @@ export class LoginComponent {
   }
 
 
+  /**
+   * Loged in the user with email and password.
+   */
   async loginUser() {
     if (this.loginForm.valid) {
       const email = this.loginForm.get('email')!.value;
@@ -100,19 +118,28 @@ export class LoginComponent {
   }
 
 
+  /**
+   * Shows the login options.
+   */
   backToOptions() {
     this.showLogin = false;
     this.showSignUp = false;
   }
 
 
+  /**
+   * Navigates to the dashboard. 
+   */
   routeToDashboard() {
     this.router.navigate(['/dashboard']);
   }
 
 
-
-
+  /**
+   * Opened and closed a snackbar with sucess or error message.
+   * @param message - message text
+   * @param status - error or sucess mesage
+   */
   openSnackBar(message: string, status: 'success' | 'error'): void {
     const panelClass = (status === 'success') ? 'success-snackbar' : 'error-snackbar';
 

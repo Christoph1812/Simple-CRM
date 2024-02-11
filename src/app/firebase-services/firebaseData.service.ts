@@ -12,17 +12,21 @@ import { BehaviorSubject } from 'rxjs';
 export class firebaseData implements OnDestroy {
   customers: Customer[] = [];
   leads: Lead[] = [];
-  products: Product[] = [];
+  // products: Product[] = [];
   private customerSubject = new BehaviorSubject<Customer | null>(null);
+  // private leadSubject = new BehaviorSubject<Lead | null>(null);
+  // private productSubject = new BehaviorSubject<Product | null>(null);
 
 
   unsubCustomers;
+
 
 
   firestore: Firestore = inject(Firestore);
 
   constructor() {
     this.unsubCustomers = this.subCustomersList();
+
 
   }
 
@@ -32,13 +36,21 @@ export class firebaseData implements OnDestroy {
 
   }
 
-
-
-  async addCustomer(item: any) {
-    await addDoc(this.getCustomersRef(), item).catch(
-      (err) => { console.log(err) }
-    )
+  async addItem(collectionName: string, item: any) {
+    try {
+      const collectionRef = collection(this.firestore, collectionName);
+      await addDoc(collectionRef, item);
+      console.log(`${collectionName} erfolgreich hinzugefügt`);
+    } catch (error) {
+      console.error(`Fehler beim Hinzufügen von ${collectionName}:`, error);
+    }
   }
+
+  // async addCustomer(item: any) {
+  //   await addDoc(this.getCustomersRef(), item).catch(
+  //     (err) => { console.log(err) }
+  //   )
+  // }
 
 
   async updateCustomer(customer: any) {

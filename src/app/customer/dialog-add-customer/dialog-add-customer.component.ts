@@ -20,7 +20,7 @@ export class DialogAddCustomerComponent {
     if (this.birthDate) {
       this.customer.birthDate = this.birthDate.getTime();
     }
-    this.firebaseData.addCustomer(this.customer.toJson());
+    this.firebaseData.addItem('customers', this.customer.toJson());
     setTimeout(() => {
       this.loading = false;
       this.dialogRef.close();

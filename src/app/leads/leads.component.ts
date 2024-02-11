@@ -18,7 +18,7 @@ export class LeadsComponent {
   }
 
   getList() {
-    return this.firebaseData.customers;
+    return this.firebaseData.leads;
   }
 
 
