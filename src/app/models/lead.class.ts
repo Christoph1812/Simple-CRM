@@ -1,4 +1,5 @@
-import { ContactPerson } from "../interfaces/contactPerson.interface";
+import { ContactPerson } from "./contactPerson.class";
+
 
 export class Lead {
     id: string;
@@ -15,7 +16,8 @@ export class Lead {
         this.companyName = obj ? obj.companyName : '';
         this.location = obj ? obj.location : '';
         this.zipCode = obj ? obj.zipcode : '';
-        this.contactPersons = obj && obj.contactPersons ? obj.contactPersons : [];
+        this.contactPersons = [];
+        this.contactPersons = [new ContactPerson()];
         this.priority = obj ? obj.priority : '';
         this.status = obj ? obj.status : '';
         this.leadNotes = obj && obj.leadNotes ? obj.leadNotes : [];

@@ -21,9 +21,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
-
 import { MatMenuModule } from '@angular/material/menu';
-
 import { SalesPipelineComponent } from './sales-pipeline/sales-pipeline.component';
 import { ProductsComponent } from './products/products.component';
 import { CalendarComponent } from './calendar/calendar.component';
@@ -38,7 +36,7 @@ import { DataProtectionComponent } from './data-protection/data-protection.compo
 import { DialogAddLeadComponent } from './leads/dialog-add-lead/dialog-add-lead.component';
 import { CustomerDetailComponent } from './customer/customer-detail/customer-detail.component';
 import { DialogEditCustomerComponent } from './customer/dialog-edit-customer/dialog-edit-customer.component';
-
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -80,6 +78,7 @@ import { DialogEditCustomerComponent } from './customer/dialog-edit-customer/dia
     MatMenuModule,
     ReactiveFormsModule,
     MatSnackBarModule,
+    MatSelectModule,
     provideFirebaseApp(() => initializeApp({ "projectId": "simple-crm-a3027", "appId": "1:303776556573:web:19492c71444bfe650108f4", "storageBucket": "simple-crm-a3027.appspot.com", "apiKey": "AIzaSyDQhNONRPOVEp-gq9aqEmBwWztuxSIDslE", "authDomain": "simple-crm-a3027.firebaseapp.com", "messagingSenderId": "303776556573" })),
     provideFirestore(() => getFirestore()),
     provideAuth(() => getAuth()),

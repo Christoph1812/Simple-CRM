@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { firebaseData } from '../firebase-services/firebaseData.service';
 import { Router } from '@angular/router';
-import { DialogAddCustomerComponent } from '../customer/dialog-add-customer/dialog-add-customer.component';
+import { DialogAddLeadComponent } from './dialog-add-lead/dialog-add-lead.component';
 
 @Component({
   selector: 'app-leads',
@@ -27,7 +27,7 @@ export class LeadsComponent {
   }
 
   openDialog() {
-    this.dialog.open(DialogAddCustomerComponent);
+    this.dialog.open(DialogAddLeadComponent);
   }
 }
 
