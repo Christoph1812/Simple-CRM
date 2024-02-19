@@ -37,6 +37,7 @@ import { DialogAddLeadComponent } from './leads/dialog-add-lead/dialog-add-lead.
 import { CustomerDetailComponent } from './customer/customer-detail/customer-detail.component';
 import { DialogEditCustomerComponent } from './customer/dialog-edit-customer/dialog-edit-customer.component';
 import { MatSelectModule } from '@angular/material/select';
+import { LeadDetailComponent } from './leads/lead-detail/lead-detail.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { MatSelectModule } from '@angular/material/select';
     LegalNoticeComponent,
     DataProtectionComponent,
     DialogAddLeadComponent,
+    LeadDetailComponent,
 
   ],
   imports: [

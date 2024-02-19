@@ -14,11 +14,12 @@ export class firebaseData implements OnDestroy {
   leads: Lead[] = [];
   // products: Product[] = [];
   private customerSubject = new BehaviorSubject<Customer | null>(null);
-  // private leadSubject = new BehaviorSubject<Lead | null>(null);
+  private leadSubject = new BehaviorSubject<Lead | null>(null);
   // private productSubject = new BehaviorSubject<Product | null>(null);
 
 
   unsubCustomers;
+  unsubLeads;
 
 
 
@@ -26,6 +27,7 @@ export class firebaseData implements OnDestroy {
 
   constructor() {
     this.unsubCustomers = this.subCustomersList();
+    this.unsubLeads = this.subLeadsList();
 
 
   }
@@ -87,7 +89,19 @@ export class firebaseData implements OnDestroy {
     });
   }
 
+  subLeadsList() {
+    const q = query(this.getleadsRef())
+    return onSnapshot(q, (list) => {
+      this.leads = [];
+      list.forEach(element => {
+        this.leads.push(new Lead(element.id, element.data()));
+      });
+    });
+  }
 
+  getleadsRef() {
+    return collection(this.firestore, 'leads')
+  }
 
   getCustomersRef() {
     return collection(this.firestore, 'customers')
