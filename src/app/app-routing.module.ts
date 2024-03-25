@@ -9,6 +9,7 @@ import { DataProtectionComponent } from './data-protection/data-protection.compo
 import { ProductsComponent } from './products/products.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { CustomerDetailComponent } from './customer/customer-detail/customer-detail.component';
+import { LeadDetailComponent } from './leads/lead-detail/lead-detail.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'calendar', component: CalendarComponent },
   { path: 'data-protection', component: DataProtectionComponent },
   { path: 'legal-notice', component: LegalNoticeComponent },
+  { path: 'lead/:id', component: LeadDetailComponent },
   { path: 'customer/:id', component: CustomerDetailComponent }
 ];
 

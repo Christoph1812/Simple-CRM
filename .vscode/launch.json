@@ -3,10 +3,27 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Attach to Chrome",
+      "port": 9222,
+      "request": "attach",
+      "type": "chrome",
+      "webRoot": "${workspaceFolder}"
+    },
+    {
+      "name": "Launch node",
+      "program": "${workspaceFolder}/app.js",
+      "request": "launch",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "type": "node"
+    },
+    {
       "name": "ng serve",
       "type": "chrome",
       "request": "launch",
       "preLaunchTask": "npm: start",
+      "sourceMaps": true,
       "url": "http://localhost:4200/"
     },
     {

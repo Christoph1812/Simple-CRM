@@ -2,19 +2,20 @@
     <h1>Leads</h1>
     <mat-form-field appearance="outline">
         <mat-label>Filter options</mat-label>
-        <mat-select>
+        <mat-select [(value)]="filterOption" (selectionChange)="getFilterValue($event.value)">
             <mat-option value="noFilter">No Filter</mat-option>
-            <mat-option value="company">Company</mat-option>
+            <mat-option value="companyName">Company</mat-option>
             <mat-option value="location">Location</mat-option>
             <mat-option value="priority">Priority</mat-option>
         </mat-select>
     </mat-form-field>
     <div class="search-field">
-        <input class="search-field" type="text" placeholder="search">
+        <input class="search-field" type="text" placeholder="Search" [(ngModel)]="searchTerm"
+            (input)="filterOrSearch()">
         <mat-icon>search</mat-icon>
     </div>
 </header>
-<table mat-table [dataSource]="getList()" [routerLink]="'/customer/' " class="mat-elevation-z8">
+<table mat-table [dataSource]="dataSource" [routerLink]="'/customer/' " class="mat-elevation-z8">
     <ng-container matColumnDef="company">
         <th mat-header-cell *matHeaderCellDef> Company </th>
         <td mat-cell *matCellDef="let element">
@@ -33,7 +34,7 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="navigateToCustomerDetails(row.id)"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="navigateToLeadsDetails(row.id)"></tr>
 </table>
 <button (click)="openDialog()" class="add-customer-btn" mat-fab color="primary" matTooltip="Add Lead">
     <mat-icon>add</mat-icon>

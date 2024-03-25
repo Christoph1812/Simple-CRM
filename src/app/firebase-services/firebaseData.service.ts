@@ -10,14 +10,15 @@ import { BehaviorSubject } from 'rxjs';
 })
 
 export class firebaseData implements OnDestroy {
+  //customer
   customers: Customer[] = [];
-  leads: Lead[] = [];
-  // products: Product[] = [];
   private customerSubject = new BehaviorSubject<Customer | null>(null);
-  private leadSubject = new BehaviorSubject<Lead | null>(null);
-  // private productSubject = new BehaviorSubject<Product | null>(null);
 
+  //lead
+  leads: Lead[] = [];
+  private leadSubject = new BehaviorSubject<Lead[]>([]);
 
+  // Variables to hold unsubscribe functions for Item subscriptions
   unsubCustomers;
   unsubLeads;
 
@@ -25,19 +26,25 @@ export class firebaseData implements OnDestroy {
 
   firestore: Firestore = inject(Firestore);
 
+  /**
+   * Construktuor initializes the unsubscribe funktions
+   */
   constructor() {
     this.unsubCustomers = this.subCustomersList();
     this.unsubLeads = this.subLeadsList();
-
 
   }
 
 
   ngOnDestroy() {
     this.unsubCustomers();
-
   }
 
+  /**
+   * Asynchronously adds an item to the specified Firestore collection.
+   * @param collectionName The name of the collection to add the item to.
+   * @param item The item to add to the collection.
+   */
   async addItem(collectionName: string, item: any) {
     try {
       const collectionRef = collection(this.firestore, collectionName);
@@ -48,13 +55,56 @@ export class firebaseData implements OnDestroy {
     }
   }
 
-  // async addCustomer(item: any) {
-  //   await addDoc(this.getCustomersRef(), item).catch(
-  //     (err) => { console.log(err) }
-  //   )
+  getSingleDocRef(colId: string, docId: string) {
+    return doc(collection(this.firestore, colId), docId);
+  }
+
+
+  // Crud funktions for Leads
+  private subLeadsList() {
+    const q = query(collection(this.firestore, 'leads'));
+    onSnapshot(q, (snapshot) => {
+      const leads: Lead[] = [];
+      snapshot.forEach((doc) => {
+        const data = doc.data();
+        leads.push(new Lead(doc.id, data));
+      });
+      // Aktualisiere das BehaviorSubject mit den neuen Lead-Daten
+      this.leadSubject.next(leads);
+    });
+  }
+
+  getLeadsObservable() {
+    return this.leadSubject.asObservable();
+  }
+
+  // subLeadsList() {
+  //   const q = query(this.getleadsRef())
+  //   return onSnapshot(q, (list) => {
+  //     this.leads = [];
+  //     list.forEach(element => {
+  //       this.leads.push(new Lead(element.id, element.data()));
+  //     });
+  //   });
   // }
 
 
+  // getleadsRef() {
+  //   return collection(this.firestore, 'leads')
+  // }
+
+
+  // getLeadsObservable(): BehaviorSubject<Lead[] | []> {
+  //   return this.leadSubject;
+  // }
+
+
+
+
+
+
+
+  // Crud funktions for Customers
   async updateCustomer(customer: any) {
     try {
       let docRef = this.getSingleDocRef('customers', customer.id);
@@ -79,6 +129,9 @@ export class firebaseData implements OnDestroy {
     return this.customerSubject;
   }
 
+
+
+
   subCustomersList() {
     const q = query(this.getCustomersRef())
     return onSnapshot(q, (list) => {
@@ -87,29 +140,15 @@ export class firebaseData implements OnDestroy {
         this.customers.push(new Customer(element.id, element.data()));
       });
     });
+
   }
 
-  subLeadsList() {
-    const q = query(this.getleadsRef())
-    return onSnapshot(q, (list) => {
-      this.leads = [];
-      list.forEach(element => {
-        this.leads.push(new Lead(element.id, element.data()));
-      });
-    });
-  }
 
-  getleadsRef() {
-    return collection(this.firestore, 'leads')
-  }
 
   getCustomersRef() {
     return collection(this.firestore, 'customers')
   }
 
 
-  getSingleDocRef(colId: string, docId: string) {
-    return doc(collection(this.firestore, colId), docId);
-  }
 
 }
